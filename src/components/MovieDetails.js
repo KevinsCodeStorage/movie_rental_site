@@ -3,32 +3,31 @@ import { useState, useEffect } from "react";
 // components
 
 function MovieDetails(props) {
-  let { Movie } = props.Searchbar.searchTerm;
-  let [movieData, setMovieData] = useState([]);
+    let { Movie } = Searchbar.props.searchTerm;
+    let [movieData, setMovieData] = useState([]);
 
-  useEffect(() => {
-    const API_URL = `${process.env.PG_URI}/${Movie}`;
-    const fetchData = async () => {
-      const response = await fetch(API_URL);
-      const resData = await response.json();
-      console.log(resData);
-      setMovieData(resData.results);
-    };
-    fetchData();
-  }, [Movie]);
-
+    useEffect(() => {
+        const API_URL = `${process.env.PG_URI}/Movie/${Movie}`;
+        const fetchData = async () => {
+            const response = await fetch(API_URL);
+            const resData = await response.json();
+            console.log(resData)
+            setMovieData(resData.results);
+        };
+        fetchData();
+    }, [Movie]);
+  
   return (
     <div>
       <p>
-        {movieData.title}
+        {/* {movieMap.title}
         <br />
         {movieData.synopsis}
         <br />
         {movieData.year_released}
         <br />
-        <p>test</p>
-        {movieData.actor}
-        <button>Rent Movie</button>
+        <p>test</p> */}
+        {/* make array of actors with links */}
       </p>
     </div>
   );

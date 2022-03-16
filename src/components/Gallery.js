@@ -1,20 +1,19 @@
 // dependencies
-import { useContext } from "react";
-import { useEffect, useState } from "react";
 
-// context
-import { DataContext } from "../context/DataContext";
+import { useEffect, useState, useContext } from "react";
+import { DataContext } from '../context/DataContext';
+
 // import controller
 import GalleryItem from "./GalleryItem";
+import Searchbar from "./Searchbar"
 
 function Gallery(props) {
   const data = useContext(DataContext);
-
-  let { Movie } = props.Searchbar.searchTerm;
+  let { Movie } = data;
   let [movieData, setMovieData] = useState([]);
-
+  console.log(Movie);
   useEffect(() => {
-    const API_URL = `PG_URI${Movie}`;
+    const API_URL = `${process.env.PG_URI}/${Movie}`;
     const fetchData = async () => {
       const response = await fetch(API_URL);
       const resData = await response.json();
